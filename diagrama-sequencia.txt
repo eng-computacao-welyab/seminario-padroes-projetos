@@ -1,0 +1,33 @@
+# model for https://sequencediagram.org/
+
+title ECOMMERCE
+
+actor Cliente
+
+Cliente->Sist. Vendas : produtoVendas, quantidade, endereço
+
+Cliente<-Sist. Vendas : confirmação
+
+Sist. Vendas -> Sist. Estoque: reserva estoque
+
+Sist. Estoque -> Sist. Financeiro : solicita nota fiscal
+
+Sist. Financeiro -> Sist. Pagamento : solicita pagamento
+
+Sist. Pagamento --> Cliente : pagamento realizado com sucesso
+
+Sist. Pagamento -> Sist. Financeiro : pagamento realizado
+
+Sist. Financeiro -> Sist. Estoque : nota fiscal
+
+Sist. Financeiro --> Cliente : nota fiscal
+
+Sist. Estoque -> Sist. Entregas : solicita entrega do produto
+
+Sist. Entregas --> Cliente : produto em preparação
+
+Sist. Entregas --> Cliente : produto em trânsito
+
+Sist. Entregas --> Cliente : destinatário ausente. Entrega no próximo dia útil.
+
+Sist. Entregas --> Cliente : produto entregue

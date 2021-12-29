@@ -1,0 +1,30 @@
+title publish / subscribe sequence diagram
+
+participant Publisher
+participant Subscriber 1
+participant Subscriber 2
+participant Subscriber N
+participant Channel
+
+Subscriber 1 -> Channel: register subscription
+activate Channel
+Subscriber 1 <- Channel: ok
+deactivate Channel
+
+Subscriber 2 -> Channel: register subscription
+activate Channel
+Subscriber 2 <- Channel: ok
+deactivate Channel
+
+Subscriber N -> Channel: register subscription
+activate Channel
+Subscriber N <- Channel: ok
+deactivate Channel
+
+Publisher -> Channel: send message
+activate Channel
+
+Channel --> Subscriber 1: notify message
+Channel --> Subscriber 2: notify message
+Channel --> Subscriber N: notify message
+deactivate Channel
